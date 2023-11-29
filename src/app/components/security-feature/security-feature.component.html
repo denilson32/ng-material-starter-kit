@@ -1,0 +1,6 @@
+<mat-radio-group>
+  <mat-radio-button *ngFor="let securityFeature of securityFeatures" [value] = securityFeature.id (click)="selectSecurityFeature(securityFeature)">
+    {{securityFeature.name}}
+  </mat-radio-button>
+</mat-radio-group>
+  

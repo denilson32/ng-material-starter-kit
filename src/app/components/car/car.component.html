@@ -1,0 +1,42 @@
+<form [formGroup]="carForm">
+  <h1>Car Form</h1>
+
+  <div class="example-form">
+      <div class="full-width">
+          <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label for = "model">Model</mat-label>
+              <input matInput id = "model" formControlName = "model">
+          </mat-form-field>
+      </div>
+      <div class="full-width">
+          <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label for = "description">Description</mat-label>
+              <textarea matInput id = "description" formControlName = "description"></textarea>
+          </mat-form-field>
+      </div>
+  </div>
+  
+  <mat-form-field appearance="fill">
+    <mat-label for = "description">Brand</mat-label>
+    <mat-select formControlName = "brand">
+      <mat-option *ngFor="let car of cars" [value]="car.name">
+        {{car.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <h4>Security features</h4>
+  <div *ngFor="let securityFeature of securityFeatureRows">
+    <app-security-feature (selectedSecurityFeature)="newSecurityFeatureAdded($event)">
+
+    </app-security-feature>
+  </div>
+  <br>
+  <button mat-fab color="accent" (click)="addNewSecurityFeature()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <app-comfort-feature (selectedComfortFeature)="newComfortFeatureAdded($event)">
+
+  </app-comfort-feature>
+</form>
+  

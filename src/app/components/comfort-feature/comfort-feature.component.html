@@ -1,0 +1,5 @@
+<section class="example-section">
+    <mat-checkbox *ngFor="let comfortFeature of comfortFeatures" value="comfortFeature.id" (click)="selectComfortFeature(comfortFeature)">{{comfortFeature.name}}
+
+    </mat-checkbox>
+  </section>
