@@ -3,11 +3,9 @@ import { CarService } from '../../services/car.service';
 import { Car } from 'src/app/models/car';
 import { SecurityFeature } from 'src/app/models/securityFeature';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   FormControl,
-  Validators,
   FormArray,
 } from '@angular/forms';
 import { ComfortFeature } from 'src/app/models/comfortFeature';
@@ -74,12 +72,10 @@ export class CarComponent implements OnInit {
 
   newSecurityFeatureAdded(selectedSecurityFeature: SecurityFeature) {
     this.securityFeaturesFormArray.push(this.formBuilder.control(selectedSecurityFeature));
-    console.log(this.carForm);
   }
 
   newComfortFeatureAdded(selectComfortFeature: ComfortFeature) {
     this.comfortFeaturesFormArray.push(this.formBuilder.control(selectComfortFeature));
-    console.log(this.carForm);
   }
 
   onSubmit() {
