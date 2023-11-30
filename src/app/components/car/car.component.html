@@ -27,7 +27,8 @@
   
   <h4>Security features</h4>
   <div *ngFor="let securityFeature of securityFeatureRows">
-    <app-security-feature (selectedSecurityFeature)="newSecurityFeatureAdded($event)">
+    <app-security-feature (selectedSecurityFeature)="newSecurityFeatureAdded($event)"
+                          (securityFeatureNumber)="assignSecurityFeatureNumber($event)">
 
     </app-security-feature>
   </div>

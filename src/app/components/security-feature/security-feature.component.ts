@@ -9,6 +9,8 @@ import { SecurityFeatureService } from 'src/app/services/security-feature.servic
 })
 export class SecurityFeatureComponent implements OnInit {
   @Output() selectedSecurityFeature = new EventEmitter<SecurityFeature>();
+  @Output() securityFeatureNumber = new EventEmitter<number>();
+
   securityFeatures: SecurityFeature[] = [];
   constructor(private securityFeatureService: SecurityFeatureService) { }
 
@@ -17,7 +19,10 @@ export class SecurityFeatureComponent implements OnInit {
   }
 
   init() {
-    this.securityFeatureService.getSecurityFeatures().subscribe((data) => this.securityFeatures = [...data]);
+    this.securityFeatureService.getSecurityFeatures().subscribe((data) => {
+      this.securityFeatures = [...data]
+      this.securityFeatureNumber.emit(this.securityFeatures.length);
+    })
   }
 
   selectSecurityFeature(securityFeature: SecurityFeature) {

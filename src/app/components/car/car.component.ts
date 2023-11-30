@@ -20,6 +20,8 @@ import { ComfortFeature } from 'src/app/models/comfortFeature';
 export class CarComponent implements OnInit {
   cars: Car[] = [];
   securityFeatureRows: SecurityFeature[] = [new SecurityFeature()];
+  maximumNumberOfSecurityFeatures = 1;
+  numberOfSelectedSecurityFeatures = 1;
 
   carForm: FormGroup = new FormGroup({
     model: new FormControl(''),
@@ -59,17 +61,26 @@ export class CarComponent implements OnInit {
     return this.carForm.get('comfortFeatures') as FormArray;
   }
 
+  assignSecurityFeatureNumber(numberOfSecurityFeatures: number) {
+    this.maximumNumberOfSecurityFeatures = numberOfSecurityFeatures;
+  }
+
   addNewSecurityFeature() {
-    this.securityFeatureRows.push(new SecurityFeature());
+    if(this.numberOfSelectedSecurityFeatures < this.maximumNumberOfSecurityFeatures) {
+      this.securityFeatureRows.push(new SecurityFeature());
+      this.numberOfSelectedSecurityFeatures++;
+    }
   }
 
   newSecurityFeatureAdded(selectedSecurityFeature: SecurityFeature) {
+    // if (selectedSecurityFeature && selectedSecurityFeature.id && selectedSecurityFeature.id <= this.securityFeatureRows.length ) {
+    //   this.securityFeatureRows[selectedSecurityFeature.id - 1].name = selectedSecurityFeature.name;
+    //   this.securityFeatureRows[selectedSecurityFeature.id - 1].id = selectedSecurityFeature.id;
+    // }
     this.securityFeaturesFormArray.push(this.formBuilder.control(selectedSecurityFeature));
-    console.log(this.carForm);
   }
 
   newComfortFeatureAdded(selectComfortFeature: ComfortFeature) {
     this.comfortFeaturesFormArray.push(this.formBuilder.control(selectComfortFeature));
-    console.log(this.carForm);
   }
 }
