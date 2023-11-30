@@ -19,8 +19,8 @@
   <mat-form-field appearance="fill">
     <mat-label for = "description">Brand</mat-label>
     <mat-select formControlName = "brand">
-      <mat-option *ngFor="let car of cars" [value]="car.name">
-        {{car.name}}
+      <mat-option *ngFor="let brand of brands" [value]="brand.name">
+        {{brand.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -39,5 +39,6 @@
   <app-comfort-feature (selectedComfortFeature)="newComfortFeatureAdded($event)">
 
   </app-comfort-feature>
+  <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
 </form>
   

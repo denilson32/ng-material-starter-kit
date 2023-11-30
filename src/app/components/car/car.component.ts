@@ -18,7 +18,7 @@ import { ComfortFeature } from 'src/app/models/comfortFeature';
   styleUrls: ['./car.component.scss']
 })
 export class CarComponent implements OnInit {
-  cars: Car[] = [];
+  brands: Car[] = [];
   securityFeatureRows: SecurityFeature[] = [new SecurityFeature()];
   maximumNumberOfSecurityFeatures = 1;
   numberOfSelectedSecurityFeatures = 1;
@@ -39,7 +39,7 @@ export class CarComponent implements OnInit {
   }
   init() {
     this.carService.getBrands().subscribe((data) => {
-      this.cars = data;
+      this.brands = data;
     }
     );
   }
@@ -73,14 +73,16 @@ export class CarComponent implements OnInit {
   }
 
   newSecurityFeatureAdded(selectedSecurityFeature: SecurityFeature) {
-    // if (selectedSecurityFeature && selectedSecurityFeature.id && selectedSecurityFeature.id <= this.securityFeatureRows.length ) {
-    //   this.securityFeatureRows[selectedSecurityFeature.id - 1].name = selectedSecurityFeature.name;
-    //   this.securityFeatureRows[selectedSecurityFeature.id - 1].id = selectedSecurityFeature.id;
-    // }
     this.securityFeaturesFormArray.push(this.formBuilder.control(selectedSecurityFeature));
+    console.log(this.carForm);
   }
 
   newComfortFeatureAdded(selectComfortFeature: ComfortFeature) {
     this.comfortFeaturesFormArray.push(this.formBuilder.control(selectComfortFeature));
+    console.log(this.carForm);
+  }
+
+  onSubmit() {
+    this.carService.createCarConfiguration(this.carForm.value).subscribe((response) => console.log(response));
   }
 }
